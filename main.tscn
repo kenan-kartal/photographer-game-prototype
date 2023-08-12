@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8px3lumnqeci"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_clenv"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yv857"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_okbns"]
+albedo_color = Color(0.239216, 0.239216, 0.239216, 1)
+
+[node name="Main" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.828598, -0.382362, 0.40893, 0, 0.730437, 0.682981, -0.559844, -0.565916, 0.605238, 10.4528, 7.59684, 13.4527)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_clenv")
+
+[node name="Floor" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("BoxMesh_yv857")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_okbns")
