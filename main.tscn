@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8px3lumnqeci"]
+[gd_scene load_steps=6 format=3 uid="uid://c8px3lumnqeci"]
+
+[ext_resource type="PackedScene" uid="uid://d0od1t04g8j2d" path="res://player.tscn" id="1_xuw1o"]
+[ext_resource type="PackedScene" uid="uid://dn138u05e16tm" path="res://character.tscn" id="2_jxvgn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_clenv"]
 size = Vector3(20, 1, 20)
@@ -6,7 +9,7 @@ size = Vector3(20, 1, 20)
 [sub_resource type="BoxMesh" id="BoxMesh_yv857"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_okbns"]
-albedo_color = Color(0.239216, 0.239216, 0.239216, 1)
+albedo_color = Color(0.917647, 0.917647, 0.917647, 1)
 
 [node name="Main" type="Node3D"]
 
@@ -24,3 +27,8 @@ transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 mesh = SubResource("BoxMesh_yv857")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_okbns")
+
+[node name="Player" parent="." node_paths=PackedStringArray("character") instance=ExtResource("1_xuw1o")]
+character = NodePath("../Character")
+
+[node name="Character" parent="." instance=ExtResource("2_jxvgn")]

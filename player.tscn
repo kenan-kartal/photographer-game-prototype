@@ -4,3 +4,6 @@
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_dgnl1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.814409, 0.580291, 0, -0.580291, 0.814409, 0, 7.28172, 10.7679)
