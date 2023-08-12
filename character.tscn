@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn138u05e16tm"]
+[gd_scene load_steps=8 format=3 uid="uid://dn138u05e16tm"]
 
 [ext_resource type="Script" path="res://character.gd" id="1_seaj6"]
 
@@ -8,6 +8,14 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ff2q"]
 albedo_color = Color(0.839216, 0.0823529, 0.0745098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c0c7s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_irfsr"]
+metallic = 0.5
+roughness = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7mdfy"]
 
 [node name="Character" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -20,3 +28,96 @@ shape = SubResource("CapsuleShape3D_ik6d0")
 mesh = SubResource("CapsuleMesh_3k0lo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_4ff2q")
+
+[node name="CameraGroup" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.396873, -0.723195)
+
+[node name="Yaw" type="Node3D" parent="CameraGroup"]
+
+[node name="Pitch" type="Node3D" parent="CameraGroup/Yaw"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraGroup/Yaw/Pitch"]
+transform = Transform3D(0.568598, 0, 0, 0, 0.245892, 0, 0, 0, 0.230512, 0, 0, 0)
+mesh = SubResource("BoxMesh_c0c7s")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_irfsr")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="CameraGroup/Yaw/Pitch"]
+transform = Transform3D(0.29242, 0, 0, 0, 0.0817193, 0, 0, 0, 0.14306, 0.0707678, 0.142557, -0.00935733)
+mesh = SubResource("BoxMesh_c0c7s")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_irfsr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CameraGroup/Yaw/Pitch"]
+transform = Transform3D(0.15, 0, 0, 0, -2.18557e-09, -0.15, 0, 0.05, -6.55671e-09, 0.0545317, 0, 0.175057)
+mesh = SubResource("CylinderMesh_7mdfy")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_irfsr")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CameraGroup/Yaw/Pitch"]
+transform = Transform3D(0.08, 0, 0, 0, 0.05, 3.55271e-16, 0, -2.22045e-16, 0.08, -0.204873, 0.126283, -0.0189689)
+mesh = SubResource("CylinderMesh_7mdfy")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_irfsr")
+
+[node name="Camera3D" type="Camera3D" parent="CameraGroup/Yaw/Pitch"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.10543e-15, 0, 0.407886)
+
+[node name="CamBorder" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+
+[node name="ColorRect" type="ColorRect" parent="CamBorder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -852.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CamBorder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 852.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="CamBorder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -498.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="CamBorder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 498.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+color = Color(0.0784314, 0.0784314, 0.0784314, 1)

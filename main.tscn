@@ -9,7 +9,7 @@ size = Vector3(20, 1, 20)
 [sub_resource type="BoxMesh" id="BoxMesh_yv857"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_okbns"]
-albedo_color = Color(0.917647, 0.917647, 0.917647, 1)
+albedo_color = Color(0.219608, 0.184314, 0.156863, 1)
 
 [node name="Main" type="Node3D"]
 
