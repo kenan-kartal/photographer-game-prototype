@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://lp83lweaebss"]
+
+[ext_resource type="Script" path="res://photo_model.gd" id="1_6a84q"]
+[ext_resource type="PackedScene" uid="uid://6ra72wxt27ol" path="res://floater.tscn" id="1_ujw08"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yqb7m"]
+size = Vector3(1, 1.57702, 1.21147)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pktf3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71hfa"]
+albedo_color = Color(0.184314, 0.2, 0.858824, 1)
+metallic = 0.1
+roughness = 0.65
+
+[sub_resource type="SphereMesh" id="SphereMesh_xkank"]
+
+[node name="PhotoModel" type="Node3D"]
+script = ExtResource("1_6a84q")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.257445, 0)
+shape = SubResource("BoxShape3D_yqb7m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_pktf3")
+surface_material_override/0 = SubResource("StandardMaterial3D_71hfa")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.286058, 0, 0, 0, 1, 0, 0, 0, 0.268942, 0, -0.295454, 0.726703)
+mesh = SubResource("BoxMesh_pktf3")
+surface_material_override/0 = SubResource("StandardMaterial3D_71hfa")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.286058, 0, 0, 0, 1, 0, 0, 0, 0.268942, 0, -0.295454, -0.7109)
+mesh = SubResource("BoxMesh_pktf3")
+surface_material_override/0 = SubResource("StandardMaterial3D_71hfa")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.822701, 0)
+mesh = SubResource("SphereMesh_xkank")
+surface_material_override/0 = SubResource("StandardMaterial3D_71hfa")
+
+[node name="Floater" parent="." instance=ExtResource("1_ujw08")]
+frequency = 0.3

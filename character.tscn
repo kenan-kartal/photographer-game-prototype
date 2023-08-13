@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dn138u05e16tm"]
+[gd_scene load_steps=10 format=3 uid="uid://dn138u05e16tm"]
 
 [ext_resource type="Script" path="res://character.gd" id="1_seaj6"]
 
@@ -16,6 +16,9 @@ metallic = 0.5
 roughness = 0.4
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_7mdfy"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ychiv"]
+points = PackedVector3Array(-1, -0.5, 0, 1, -0.5, 0, -1, 0.5, 0, 1, 0.5, 0, -5, -2, -10, 5, -2, -10, -5, 2, -10, 5, 2, -10)
 
 [sub_resource type="ImageTexture" id="ImageTexture_ekxl4"]
 
@@ -64,6 +67,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_irfsr")
 
 [node name="Camera3D" type="Camera3D" parent="CameraGroup/Yaw/Pitch"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.10543e-15, 0, 0.407886)
+fov = 100.0
+
+[node name="ModelDetectionArea" type="Area3D" parent="CameraGroup/Yaw/Pitch/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73747e-07, 0, -0.993718)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraGroup/Yaw/Pitch/Camera3D/ModelDetectionArea"]
+shape = SubResource("ConvexPolygonShape3D_ychiv")
 
 [node name="CamBorder" type="Control" parent="."]
 visible = false

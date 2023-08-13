@@ -10,6 +10,10 @@ class_name Character extends CharacterBody3D
 @onready var _cam_yaw := $CameraGroup/Yaw
 @onready var _cam_pitch := $CameraGroup/Yaw/Pitch
 @onready var _photo_target_rect := $CamBorder/TextureRect
+@onready var _model_detection_area := $CameraGroup/Yaw/Pitch/Camera3D/ModelDetectionArea
+@onready var _model_detection_shape := $CameraGroup/Yaw/Pitch/Camera3D/ModelDetectionArea/CollisionShape3D
+
+var models_in_focus := {}
 
 var camera_mode : bool = false:
 	get:
@@ -41,8 +45,13 @@ func _on_target_reached():
 
 func _update_mode():
 	$CamBorder.visible = camera_mode
+	if not camera_mode:
+		for model in models_in_focus:
+			var model_ref : PhotoModel = model
+			model_ref.set_spin(false)
+			models_in_focus.erase(model)
 
-func _physics_process(delta):
+func _move(delta: float):
 	if not is_on_floor():
 		velocity.y -= _gravity * delta
 	if _move_state == MovementState.Idle:
@@ -65,6 +74,30 @@ func _physics_process(delta):
 			velocity.z = -forward.z
 			velocity.x = -forward.x
 	move_and_slide()
+
+func _detect_models():
+	var areas : Array[Area3D] = _model_detection_area.get_overlapping_areas()
+	# Add new models.
+	for area in areas:
+		var model := area.get_parent() as PhotoModel
+		if not model:
+			continue
+		if models_in_focus.has(model):
+			continue
+		models_in_focus[model] = area
+		model.set_spin(true)
+	# Remove models.
+	for model in models_in_focus:
+		var area : Area3D = models_in_focus[model]
+		if not areas.has(area):
+			var model_ref : PhotoModel = model
+			model_ref.set_spin(false)
+			models_in_focus.erase(model)
+
+func _physics_process(delta):
+	_move(delta)
+	if camera_mode:
+		_detect_models()
 
 func go_to_target_node(target: Node3D, tolerance: float = 0.1):
 	_target_node = target

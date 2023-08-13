@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8px3lumnqeci"]
+[gd_scene load_steps=7 format=3 uid="uid://c8px3lumnqeci"]
 
 [ext_resource type="PackedScene" uid="uid://d0od1t04g8j2d" path="res://player.tscn" id="1_xuw1o"]
 [ext_resource type="PackedScene" uid="uid://dn138u05e16tm" path="res://character.tscn" id="2_jxvgn"]
+[ext_resource type="PackedScene" uid="uid://lp83lweaebss" path="res://photo_model.tscn" id="3_pm34e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_clenv"]
 size = Vector3(20, 1, 20)
@@ -32,3 +33,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_okbns")
 character = NodePath("../Character")
 
 [node name="Character" parent="." instance=ExtResource("2_jxvgn")]
+
+[node name="PhotoModel" parent="." instance=ExtResource("3_pm34e")]
+transform = Transform3D(0.488256, 0, -0.872701, 0, 1, 0, 0.872701, 0, 0.488256, -5.36443, 2.65552, -5.5731)
+
+[node name="PhotoModel2" parent="." instance=ExtResource("3_pm34e")]
+transform = Transform3D(-0.396699, 0, -0.917949, 0, 1, 0, 0.917949, 0, -0.396699, 4.4723, 2.65552, -5.03583)
