@@ -3,11 +3,13 @@ class_name Character extends CharacterBody3D
 @export var speed : float = 5.0
 @export var yaw_limit := Vector2(-70, 70)
 @export var pitch_limit := Vector2(-30, 40)
+@export var photograph_resolution := Vector2i(552, 348)
 
 @onready var cam := $CameraGroup/Yaw/Pitch/Camera3D
 
 @onready var _cam_yaw := $CameraGroup/Yaw
 @onready var _cam_pitch := $CameraGroup/Yaw/Pitch
+@onready var _photo_target_rect := $CamBorder/TextureRect
 
 var camera_mode : bool = false:
 	get:
@@ -87,3 +89,12 @@ func rotate_cam(rot: Vector2):
 	pitch = clampf(pitch, pitch_limit.x, pitch_limit.y)
 	_cam_yaw.rotation_degrees.y = yaw
 	_cam_pitch.rotation_degrees.x = pitch
+
+func shoot():
+	var cam_img := get_viewport().get_texture().get_image()
+	var photo_img := Image.create(photograph_resolution.x, photograph_resolution.y, true, cam_img.get_format())
+	var res := cam_img.get_size()
+	var cam_rect := Rect2i(res / 2 - photograph_resolution / 2, photograph_resolution)
+	photo_img.blit_rect(cam_img, cam_rect, Vector2i.ZERO)
+	var texture := ImageTexture.create_from_image(photo_img)
+	_photo_target_rect.texture = texture

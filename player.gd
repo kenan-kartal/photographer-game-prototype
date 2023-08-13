@@ -44,7 +44,7 @@ func _on_primary_mouse_button_clicked():
 		PlayerMode.Top:
 			_move_character()
 		PlayerMode.Photo:
-			push_warning("Not implemented")
+			character.shoot()
 
 func _on_secondary_mouse_button_clicked():
 	_switch_mode()

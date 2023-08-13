@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn138u05e16tm"]
+[gd_scene load_steps=9 format=3 uid="uid://dn138u05e16tm"]
 
 [ext_resource type="Script" path="res://character.gd" id="1_seaj6"]
 
@@ -16,6 +16,8 @@ metallic = 0.5
 roughness = 0.4
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_7mdfy"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_ekxl4"]
 
 [node name="Character" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -121,3 +123,17 @@ grow_vertical = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CamBorder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 865.0
+offset_top = 458.0
+offset_right = -11.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ImageTexture_ekxl4")
+expand_mode = 1
